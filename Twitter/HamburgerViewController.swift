@@ -38,10 +38,7 @@ class HamburgerViewController: UIViewController {
             contentView.addSubview(contentViewController.view)
             contentViewController.didMoveToParentViewController(self)
 
-            UIView.animateWithDuration(0.3) { () -> Void in
-                self.leadingMarginConstraint.constant = 0
-                self.view.layoutIfNeeded()
-            }
+            closeMenu()
         }
     }
     
@@ -65,16 +62,33 @@ class HamburgerViewController: UIViewController {
         } else if sender.state == UIGestureRecognizerState.Changed {
             leadingMarginConstraint.constant = originalLeadingMargin + translation.x
         } else if sender.state == UIGestureRecognizerState.Ended {
+            if velocity.x > 0 {  // Opening.
+                openMenu()
+            } else {
+                closeMenu()
+            }
+        }
+    }
 
-            UIView.animateWithDuration(0.3, animations: { () -> Void in
-                if velocity.x > 0 {  // Opening.
-                    self.leadingMarginConstraint.constant = self.view.frame.size.width - 50
-                } else {  // Closing.
-                    self.leadingMarginConstraint.constant = 0
-                }
-                self.view.layoutIfNeeded()
-            })
+    func openMenu() {
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.leadingMarginConstraint.constant = self.view.frame.size.width - 50
+            self.view.layoutIfNeeded()
+        }
+    }
 
+    func closeMenu() {
+        UIView.animateWithDuration(0.3) { () -> Void in
+            self.leadingMarginConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }
+    }
+
+    func openOrClose() {
+        if leadingMarginConstraint.constant != 0 {
+            closeMenu()
+        } else {
+            openMenu()
         }
     }
 }

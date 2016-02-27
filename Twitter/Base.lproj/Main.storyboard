@@ -39,10 +39,10 @@
             </objects>
             <point key="canvasLocation" x="366.39999999999998" y="247.55333333333334"/>
         </scene>
-        <!--Tweets View Controller-->
+        <!--Home-->
         <scene sceneID="VGW-xB-KIl">
             <objects>
-                <viewController storyboardIdentifier="TweetsViewController" id="YAB-dg-TzJ" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="YAB-dg-TzJ" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jNb-cX-yTt"/>
                         <viewControllerLayoutGuide type="bottom" id="n4P-6y-4Oh"/>
@@ -130,7 +130,12 @@
                             <constraint firstItem="Wg3-kU-ihC" firstAttribute="leading" secondItem="ela-Kt-FDz" secondAttribute="leading" id="wba-da-BN9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="8aY-Wd-y3D">
+                    <navigationItem key="navigationItem" title="Home" id="8aY-Wd-y3D">
+                        <barButtonItem key="leftBarButtonItem" title="🍔" id="2Bm-dr-9U9">
+                            <connections>
+                                <action selector="onHamburgerButton:" destination="YAB-dg-TzJ" id="t9S-oI-xy7"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="📓" id="cQZ-bf-ZOg">
                             <connections>
                                 <segue destination="OlO-Hb-yI0" kind="modal" identifier="composeSegue" id="a7f-Jc-Ikf"/>
@@ -341,7 +346,7 @@
         <!--Profile View Controller-->
         <scene sceneID="Wdi-83-TLL">
             <objects>
-                <viewController id="a6A-QV-P0K" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" id="a6A-QV-P0K" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UCH-a7-Ldp"/>
                         <viewControllerLayoutGuide type="bottom" id="zuT-8R-IBA"/>
@@ -363,7 +368,9 @@
                             <constraint firstItem="cRP-d2-WN0" firstAttribute="top" secondItem="UCH-a7-Ldp" secondAttribute="bottom" constant="8" id="kLK-TU-Lsr"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="DeN-1v-XQE"/>
+                    <navigationItem key="navigationItem" id="DeN-1v-XQE">
+                        <barButtonItem key="leftBarButtonItem" title="🍔" id="iPb-wx-G0w"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmY-CI-Jq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

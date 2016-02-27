@@ -20,6 +20,8 @@ class TweetsViewController: UIViewController {
     var isLoadingMoreData = false
     var loadingMoreView: InfiniteScrollActivityView?
 
+    var hamburgerViewController: HamburgerViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,6 +66,10 @@ class TweetsViewController: UIViewController {
 
             self.tableView.reloadData()
         }
+    }
+    
+    @IBAction func onHamburgerButton(sender: UIBarButtonItem) {
+        hamburgerViewController.openOrClose()
     }
 }
 
