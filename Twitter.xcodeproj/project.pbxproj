@@ -24,6 +24,8 @@
 		22C78F551C80266A007C84ED /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C78F541C80266A007C84ED /* MenuViewController.swift */; };
 		22C78F571C802947007C84ED /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C78F561C802947007C84ED /* MenuCell.swift */; };
 		22C78F591C802A6D007C84ED /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C78F581C802A6D007C84ED /* ProfileViewController.swift */; };
+		22C78F5B1C818CE0007C84ED /* ProfileImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C78F5A1C818CE0007C84ED /* ProfileImageCell.swift */; };
+		22C78F5D1C818CF5007C84ED /* ProfileStatsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C78F5C1C818CF5007C84ED /* ProfileStatsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		22C78F541C80266A007C84ED /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		22C78F561C802947007C84ED /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
 		22C78F581C802A6D007C84ED /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		22C78F5A1C818CE0007C84ED /* ProfileImageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileImageCell.swift; sourceTree = "<group>"; };
+		22C78F5C1C818CF5007C84ED /* ProfileStatsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileStatsCell.swift; sourceTree = "<group>"; };
 		6B49AD85D20494B6BED39F2F /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		822BE2BE34F9BB2DD4EA5750 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -132,6 +136,8 @@
 			children = (
 				228D8C131C78FB8E008B6ABE /* TweetCell.swift */,
 				22C78F561C802947007C84ED /* MenuCell.swift */,
+				22C78F5A1C818CE0007C84ED /* ProfileImageCell.swift */,
+				22C78F5C1C818CF5007C84ED /* ProfileStatsCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -281,6 +287,8 @@
 				22C78F571C802947007C84ED /* MenuCell.swift in Sources */,
 				228D8C141C78FB8F008B6ABE /* TweetCell.swift in Sources */,
 				227527D11C76FBC200A99F83 /* Tweet.swift in Sources */,
+				22C78F5B1C818CE0007C84ED /* ProfileImageCell.swift in Sources */,
+				22C78F5D1C818CF5007C84ED /* ProfileStatsCell.swift in Sources */,
 				22C78F551C80266A007C84ED /* MenuViewController.swift in Sources */,
 				22862B571C79415F00E8A3DE /* ComposeViewController.swift in Sources */,
 				227527D41C770C1400A99F83 /* TweetsViewController.swift in Sources */,

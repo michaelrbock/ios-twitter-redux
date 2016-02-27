@@ -34,6 +34,7 @@ class MenuViewController: UIViewController {
         profileNavigationController = UINavigationController(rootViewController: profileViewController)
         let realProfileViewController = profileNavigationController.viewControllers[0] as! ProfileViewController
         realProfileViewController.hamburgerViewController = hamburgerViewController
+        realProfileViewController.screenName = User.currentUser!.screenName
 
         let homeViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
         homeNavigationController = UINavigationController(rootViewController: homeViewController)
@@ -46,8 +47,6 @@ class MenuViewController: UIViewController {
         let realMentionsViewController = mentionsNavigationController.viewControllers[0] as! TweetsViewController
         realMentionsViewController.hamburgerViewController = hamburgerViewController
         realMentionsViewController.timelineType = TimelineType.Mentions
-
-
 
         viewControllers = [profileNavigationController, homeNavigationController, mentionsNavigationController]
 

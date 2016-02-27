@@ -91,15 +91,25 @@ class TwitterClient: BDBOAuth1SessionManager {
                 //print("home_timeline: \(response)")
                 let tweets = Tweet.tweetsWithArray(response as! [NSDictionary])
 
-                for tweet in tweets {
-                    print("text: \(tweet.text), created: \(tweet.createdAt)")
-                }
-
                 completion(tweets: tweets, error: nil)
             }, failure: { (dataTask: NSURLSessionDataTask?, error: NSError) -> Void in
                 print("error getting home timeline")
                 completion(tweets: nil, error: error)
         })
+    }
+
+    func userWithScreenName(screenName: String, completion: (user: User?, error: NSError?) -> ()) {
+        GET("1.1/users/show.json",
+            parameters: ["screen_name": screenName],
+            progress: nil,
+            success: { (dataTask: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                let user = User(dictionary: response as! NSDictionary)
+                print("Got user: @\(user.screenName)")
+                completion(user: user, error: nil)
+            }) { (dataTask: NSURLSessionDataTask?, error: NSError) -> Void in
+                print("Error getting user with screen name")
+                completion(user: nil, error: error)
+        }
     }
 
     func openURL(url: NSURL) {
