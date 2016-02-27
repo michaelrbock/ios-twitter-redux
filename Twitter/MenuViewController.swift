@@ -46,13 +46,13 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuCell", forIndexPath: indexPath) as! MenuCell
 
-        let titles = ["👤 Profile", "🏠 Home", "📢 Mentions"]
+        let titles = ["👤 Profile", "🏠 Home", "📢 Mentions", "⬅️ Logout"]
         cell.menuTitleLabel.text = titles[indexPath.row]
 
         return cell
@@ -67,6 +67,14 @@ extension MenuViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
 
-        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        switch indexPath.row {
+        case 0...2:
+            hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        case 3:
+            User.currentUser?.logout()
+        default:
+            break
+        }
+
     }
 }

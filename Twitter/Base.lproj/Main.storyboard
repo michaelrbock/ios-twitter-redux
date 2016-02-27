@@ -131,11 +131,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8aY-Wd-y3D">
-                        <barButtonItem key="leftBarButtonItem" title="Logout" id="OAX-Xf-QMK">
-                            <connections>
-                                <action selector="onLogout:" destination="YAB-dg-TzJ" id="lc8-BQ-YCl"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="📓" id="cQZ-bf-ZOg">
                             <connections>
                                 <segue destination="OlO-Hb-yI0" kind="modal" identifier="composeSegue" id="a7f-Jc-Ikf"/>

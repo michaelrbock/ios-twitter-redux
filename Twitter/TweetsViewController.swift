@@ -65,10 +65,6 @@ class TweetsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
-    @IBAction func onLogout(sender: UIBarButtonItem) {
-        User.currentUser?.logout()
-    }
 }
 
 extension TweetsViewController: UITableViewDataSource {
