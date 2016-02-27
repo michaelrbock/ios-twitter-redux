@@ -369,7 +369,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="DeN-1v-XQE">
-                        <barButtonItem key="leftBarButtonItem" title="🍔" id="iPb-wx-G0w"/>
+                        <barButtonItem key="leftBarButtonItem" title="🍔" id="iPb-wx-G0w">
+                            <connections>
+                                <action selector="onHamburgerButton:" destination="a6A-QV-P0K" id="fdu-b2-KTp"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cmY-CI-Jq6" userLabel="First Responder" sceneMemberID="firstResponder"/>

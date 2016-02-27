@@ -10,6 +10,8 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    var hamburgerViewController: HamburgerViewController!
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -22,4 +24,7 @@ class ProfileViewController: UIViewController {
     }
 
 
+    @IBAction func onHamburgerButton(sender: UIBarButtonItem) {
+        hamburgerViewController.openOrClose()
+    }
 }

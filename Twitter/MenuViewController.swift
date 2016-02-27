@@ -12,7 +12,7 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    private var profileNavigationController: UIViewController!
+    private var profileNavigationController: UINavigationController!
     private var homeNavigationController: UINavigationController!
     private var mentionsNavigationController: UIViewController!
 
@@ -28,11 +28,15 @@ class MenuViewController: UIViewController {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
 
-        profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
+        // Dirty hacks below because storyboard.instantiateViewController() won't let me cast to *ViewController.
+
+        let profileViewController = storyboard.instantiateViewControllerWithIdentifier("ProfileViewController")
+        profileNavigationController = UINavigationController(rootViewController: profileViewController)
+        let realProfileViewController = profileNavigationController.viewControllers[0] as! ProfileViewController
+        realProfileViewController.hamburgerViewController = hamburgerViewController
 
         let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController")
         homeNavigationController = UINavigationController(rootViewController: homeViewController)
-        // Dirty hack because storyboard.instantiateViewController() won't let me cast to TweetViewController.
         let realHomeViewController = homeNavigationController.viewControllers[0] as! TweetsViewController
         realHomeViewController.hamburgerViewController = hamburgerViewController
         
