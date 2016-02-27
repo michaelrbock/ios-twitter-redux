@@ -83,8 +83,8 @@ class TwitterClient: BDBOAuth1SessionManager {
         }
     }
 
-    func homeTimelineWithParams(params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
-        GET("1.1/statuses/home_timeline.json",
+    func timelineOfType(type: String, withParams params: NSDictionary?, completion: (tweets: [Tweet]?, error: NSError?) -> ()) {
+        GET("1.1/statuses/\(type)_timeline.json",
             parameters: params,
             progress: nil,
             success: { (dataTask: NSURLSessionDataTask, response: AnyObject?) -> Void in

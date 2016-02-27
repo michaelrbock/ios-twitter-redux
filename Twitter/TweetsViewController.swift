@@ -9,6 +9,11 @@
 import MBProgressHUD
 import UIKit
 
+enum TimelineType: String {
+    case Home = "home"
+    case Mentions = "mentions"
+}
+
 class TweetsViewController: UIViewController {
 
     let refreshControl = UIRefreshControl()
@@ -21,6 +26,18 @@ class TweetsViewController: UIViewController {
     var loadingMoreView: InfiniteScrollActivityView?
 
     var hamburgerViewController: HamburgerViewController!
+
+    var timelineType: TimelineType! {
+        // Sorry mom.
+        didSet {
+            if timelineType == TimelineType.Home {
+                navigationItem.title = "Home"
+            } else if timelineType == TimelineType.Mentions {
+                navigationItem.title = "Mentions"
+            }
+            getTimelineData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,13 +59,11 @@ class TweetsViewController: UIViewController {
         var insets = tableView.contentInset;
         insets.bottom += InfiniteScrollActivityView.defaultHeight;
         tableView.contentInset = insets
-
-        getTimelineData()
     }
 
     func getTimelineData() {
         MBProgressHUD.showHUDAddedTo(self.view, animated: true)
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+        TwitterClient.sharedInstance.timelineOfType(timelineType.rawValue, withParams: nil) { (tweets, error) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
             MBProgressHUD.hideHUDForView(self.view, animated: true)
@@ -58,7 +73,7 @@ class TweetsViewController: UIViewController {
 
     func getMoreTimelineData() {
         let params = ["max_id": tweets[tweets.count-1].id!] as NSDictionary
-        TwitterClient.sharedInstance.homeTimelineWithParams(params) { (tweets, error) -> () in
+        TwitterClient.sharedInstance.timelineOfType(timelineType.rawValue, withParams: params) { (tweets, error) -> () in
             self.tweets.appendContentsOf(tweets!)
 
             self.isLoadingMoreData = false
@@ -67,7 +82,7 @@ class TweetsViewController: UIViewController {
             self.tableView.reloadData()
         }
     }
-    
+
     @IBAction func onHamburgerButton(sender: UIBarButtonItem) {
         hamburgerViewController.openOrClose()
     }

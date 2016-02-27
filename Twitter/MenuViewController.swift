@@ -14,7 +14,7 @@ class MenuViewController: UIViewController {
 
     private var profileNavigationController: UINavigationController!
     private var homeNavigationController: UINavigationController!
-    private var mentionsNavigationController: UIViewController!
+    private var mentionsNavigationController: UINavigationController!
 
     var viewControllers: [UIViewController] = []
 
@@ -35,12 +35,19 @@ class MenuViewController: UIViewController {
         let realProfileViewController = profileNavigationController.viewControllers[0] as! ProfileViewController
         realProfileViewController.hamburgerViewController = hamburgerViewController
 
-        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("HomeViewController")
+        let homeViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
         homeNavigationController = UINavigationController(rootViewController: homeViewController)
         let realHomeViewController = homeNavigationController.viewControllers[0] as! TweetsViewController
         realHomeViewController.hamburgerViewController = hamburgerViewController
-        
-        mentionsNavigationController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
+        realHomeViewController.timelineType = TimelineType.Home
+
+        let mentionsViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
+        mentionsNavigationController = UINavigationController(rootViewController: mentionsViewController)
+        let realMentionsViewController = mentionsNavigationController.viewControllers[0] as! TweetsViewController
+        realMentionsViewController.hamburgerViewController = hamburgerViewController
+        realMentionsViewController.timelineType = TimelineType.Mentions
+
+
 
         viewControllers = [profileNavigationController, homeNavigationController, mentionsNavigationController]
 
