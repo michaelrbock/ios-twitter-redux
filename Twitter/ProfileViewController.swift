@@ -10,11 +10,16 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    let refreshControl = UIRefreshControl()
+
     @IBOutlet weak var tableView: UITableView!
 
     var screenName: String!
     var user: User!
     var tweets: [Tweet]! = [Tweet]()
+
+    var isLoadingMoreData = false
+    var loadingMoreView: InfiniteScrollActivityView?
 
     var hamburgerViewController: HamburgerViewController!
 
@@ -25,6 +30,9 @@ class ProfileViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
+
+        refreshControl.addTarget(self, action: "getUserTweets", forControlEvents: UIControlEvents.ValueChanged)
+        tableView.insertSubview(refreshControl, atIndex: 0)
 
         getUserInfo()
         getUserTweets()
@@ -49,6 +57,7 @@ class ProfileViewController: UIViewController {
             } else {
                 print(error)
             }
+            self.refreshControl.endRefreshing()
         }
     }
 
@@ -89,21 +98,32 @@ extension ProfileViewController: UITableViewDataSource {
                 cell = profileImageCell
             } else {
                 let profileStatsCell = tableView.dequeueReusableCellWithIdentifier("ProfileStatsCell", forIndexPath: indexPath) as! ProfileStatsCell
-
+                profileStatsCell.tweetCountLabel.text = "\(user.tweetCount!)"
+                profileStatsCell.followingCountLabel.text = "\(user.followingCount!)"
+                profileStatsCell.followersCountLabel.text = "\(user.followersCount!)"
                 cell = profileStatsCell
             }
         } else {
-            let tweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath)
-
+            let tweetCell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
+            tweetCell.tweet = tweets[indexPath.row]
             cell = tweetCell
         }
 
         return cell
     }
+
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 4
+        }
+        return 0
+    }
+
 }
 
 extension ProfileViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+
 }

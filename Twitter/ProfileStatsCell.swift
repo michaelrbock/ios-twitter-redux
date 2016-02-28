@@ -10,15 +10,25 @@ import UIKit
 
 class ProfileStatsCell: UITableViewCell {
 
+    @IBOutlet weak var tweetCountLabel: UILabel!
+    @IBOutlet weak var followingCountLabel: UILabel!
+    @IBOutlet weak var followersCountLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
+        tweetCountLabel.preferredMaxLayoutWidth = tweetCountLabel.frame.size.width
+        followingCountLabel.preferredMaxLayoutWidth = followingCountLabel.frame.size.width
+        followersCountLabel.preferredMaxLayoutWidth = followersCountLabel.frame.size.width
     }
 
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-        // Configure the view for the selected state
+        tweetCountLabel.preferredMaxLayoutWidth = tweetCountLabel.frame.size.width
+        followingCountLabel.preferredMaxLayoutWidth = followingCountLabel.frame.size.width
+        followersCountLabel.preferredMaxLayoutWidth = followersCountLabel.frame.size.width
     }
 
 }
