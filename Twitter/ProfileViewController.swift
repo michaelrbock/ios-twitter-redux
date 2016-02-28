@@ -112,13 +112,16 @@ extension ProfileViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let profileImageCell = tableView.dequeueReusableCellWithIdentifier("ProfileImageCell", forIndexPath: indexPath) as! ProfileImageCell
+                // TODO: refactor to just send user to View class.
                 profileImageCell.profileBannerImageView.setImageWithURL(NSURL(string: user.profileBannerImageURL!)!)
                 profileImageCell.profileImageView.setImageWithURL(NSURL(string: user.profileImageURL!)!)
                 profileImageCell.nameLabel.text = user.name
                 profileImageCell.usernameLabel.text = "@\(user.screenName!)"
                 cell = profileImageCell
             } else {
+
                 let profileStatsCell = tableView.dequeueReusableCellWithIdentifier("ProfileStatsCell", forIndexPath: indexPath) as! ProfileStatsCell
+                // TODO: refactor to just send user to View class.
                 profileStatsCell.tweetCountLabel.text = "\(user.tweetCount!)"
                 profileStatsCell.followingCountLabel.text = "\(user.followingCount!)"
                 profileStatsCell.followersCountLabel.text = "\(user.followersCount!)"
@@ -145,6 +148,11 @@ extension ProfileViewController: UITableViewDataSource {
 extension ProfileViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+
+        let detailViewController = storyboard?.instantiateViewControllerWithIdentifier("DetailViewController") as! DetailViewController
+        detailViewController.tweet = tweets[indexPath.row]
+
+        self.navigationController?.pushViewController(detailViewController, animated: true)
     }
 }
 
