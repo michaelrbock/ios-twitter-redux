@@ -34,6 +34,15 @@ class ProfileViewController: UIViewController {
         refreshControl.addTarget(self, action: "getUserTweets", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
 
+        // Set up Infinite Scroll loading indicator
+        let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+        loadingMoreView = InfiniteScrollActivityView(frame: frame)
+        loadingMoreView!.hidden = true
+        tableView.addSubview(loadingMoreView!)
+        var insets = tableView.contentInset;
+        insets.bottom += InfiniteScrollActivityView.defaultHeight;
+        tableView.contentInset = insets
+
         getUserInfo()
         getUserTweets()
     }
@@ -58,6 +67,18 @@ class ProfileViewController: UIViewController {
                 print(error)
             }
             self.refreshControl.endRefreshing()
+        }
+    }
+
+    func getMoreUserTweets() {
+        let params = ["max_id": tweets[tweets.count-1].id!] as NSDictionary
+        TwitterClient.sharedInstance.timelineOfType("user", withParams: params) { (tweets, error) -> () in
+            self.tweets.appendContentsOf(tweets!)
+
+            self.isLoadingMoreData = false
+            self.loadingMoreView!.stopAnimating()
+
+            self.tableView.reloadData()
         }
     }
 
@@ -125,5 +146,26 @@ extension ProfileViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
+}
 
+extension ProfileViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (!isLoadingMoreData) {
+            // Calculate the position of one screen length before the bottom of the results.
+            let scrollViewContentHeight = tableView.contentSize.height
+            let scrollOffsetThreshold = scrollViewContentHeight - tableView.bounds.size.height
+
+            // When the user has scrolled past the threshold, start requesting
+            if (scrollView.contentOffset.y > scrollOffsetThreshold && tableView.dragging) {
+                isLoadingMoreData = true
+
+                // Update position of loadingMoreView, and start loading indicator
+                let frame = CGRectMake(0, tableView.contentSize.height, tableView.bounds.size.width, InfiniteScrollActivityView.defaultHeight)
+                loadingMoreView?.frame = frame
+                loadingMoreView!.startAnimating()
+
+                getMoreUserTweets()
+            }
+        }
+    }
 }
