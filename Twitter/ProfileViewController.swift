@@ -82,7 +82,7 @@ class ProfileViewController: UIViewController {
         }
     }
 
-    @IBAction func onHamburgerButton(sender: UIBarButtonItem) {
+    func onHamburgerButton(sender: UIBarButtonItem) {
         hamburgerViewController.openOrClose()
     }
 }
@@ -113,6 +113,7 @@ extension ProfileViewController: UITableViewDataSource {
             if indexPath.row == 0 {
                 let profileImageCell = tableView.dequeueReusableCellWithIdentifier("ProfileImageCell", forIndexPath: indexPath) as! ProfileImageCell
                 // TODO: refactor to just send user to View class.
+                // TODO: protect against no banner image.
                 profileImageCell.profileBannerImageView.setImageWithURL(NSURL(string: user.profileBannerImageURL!)!)
                 profileImageCell.profileImageView.setImageWithURL(NSURL(string: user.profileImageURL!)!)
                 profileImageCell.nameLabel.text = user.name

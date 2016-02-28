@@ -86,6 +86,17 @@ class TweetsViewController: UIViewController {
     @IBAction func onHamburgerButton(sender: UIBarButtonItem) {
         hamburgerViewController.openOrClose()
     }
+
+    func didTapProfileImage(sender: UIGestureRecognizer) {
+        if sender.state == .Ended {
+            print("tapped a face")
+            let profileViewController = storyboard?.instantiateViewControllerWithIdentifier("ProfileViewController") as! ProfileViewController
+            if let profileImageView = sender.view as! UIImageView? {
+                profileViewController.screenName = tweets[profileImageView.tag].user?.screenName
+            }
+            self.navigationController?.pushViewController(profileViewController, animated: true)
+        }
+    }
 }
 
 extension TweetsViewController: UITableViewDataSource {
@@ -97,6 +108,11 @@ extension TweetsViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
 
         cell.tweet = tweets[indexPath.row]
+
+        cell.profileImageView.tag = indexPath.row
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "didTapProfileImage:")
+        cell.profileImageView.addGestureRecognizer(tapGestureRecognizer)
+        cell.profileImageView.userInteractionEnabled = true
 
         return cell
     }

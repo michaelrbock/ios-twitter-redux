@@ -35,6 +35,7 @@ class MenuViewController: UIViewController {
         let realProfileViewController = profileNavigationController.viewControllers[0] as! ProfileViewController
         realProfileViewController.hamburgerViewController = hamburgerViewController
         realProfileViewController.screenName = User.currentUser!.screenName
+        realProfileViewController.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "🍔", style: .Plain, target: realProfileViewController, action: "onHamburgerButton:")
 
         let homeViewController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
         homeNavigationController = UINavigationController(rootViewController: homeViewController)
