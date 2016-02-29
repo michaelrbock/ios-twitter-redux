@@ -1,6 +1,6 @@
 # Project 4 - *Twitter for iOS Redux*
 
-Time spent: **X** hours spent in total
+Time spent: **11** hours spent in total
 
 ## User Stories
 
@@ -35,21 +35,18 @@ The following **additional** features are implemented:
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-  1.
-  2.
+  1. Re-using view controllers for similar purposes.
+  2. Re-using views across storyboard.
 
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+![walkthrough](twitterv2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
-## Notes
-
-Describe any challenges encountered while building the app.
 
 ## License
 
