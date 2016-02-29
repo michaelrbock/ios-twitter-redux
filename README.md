@@ -13,8 +13,8 @@ The following **required** functionality is completed:
 - [X] Profile page
    - [X] Contains the user header view
    - [X] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline
-   - [ ] Tapping on a user image should bring up that user's profile page
+- [X] Home Timeline
+   - [X] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
